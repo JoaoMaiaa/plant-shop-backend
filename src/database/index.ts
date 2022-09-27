@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-export const database = new Sequelize({
+export const sequelize = new Sequelize({
   dialect: "postgres",
   username: process.env.USERNAME_DB,
   password: process.env.PASSWORD_DB,
