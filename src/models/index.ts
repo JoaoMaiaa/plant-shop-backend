@@ -1,3 +1,7 @@
 import { Consumer } from "./Consumer";
+import { Comment } from "./Comment";
 
-export { Consumer };
+Consumer.hasMany(Comment);
+Comment.belongsTo(Consumer);
+
+export { Consumer, Comment };
