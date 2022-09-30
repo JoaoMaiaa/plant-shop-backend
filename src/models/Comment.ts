@@ -20,7 +20,6 @@ export const Comment = sequelize.define<
   consumerId: {
     primaryKey: true,
     allowNull: false,
-    autoIncrement: true,
     type: DataTypes.INTEGER,
     references: { model: "consumers", key: "id" },
     onDelete: "CASCADE",
@@ -29,7 +28,6 @@ export const Comment = sequelize.define<
   productId: {
     primaryKey: true,
     allowNull: false,
-    autoIncrement: true,
     type: DataTypes.INTEGER,
     references: { model: "products", key: "id" },
     onDelete: "CASCADE",
