@@ -31,7 +31,7 @@ export const Comment = sequelize.define<
     type: DataTypes.INTEGER,
     references: { model: "products", key: "id" },
     onDelete: "CASCADE",
-    onUpdate: "CASCAE",
+    onUpdate: "CASCADE",
   },
   comment: {
     type: DataTypes.TEXT,
