@@ -31,6 +31,9 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "RESTRICT",
       },
+      image_url: {
+        type: Sequelize.DataTypes.STRING,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DataTypes.DATE,
