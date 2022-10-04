@@ -1,6 +1,7 @@
 import AdminJS from "adminjs";
 import AdminJSExpress from "@adminjs/express";
 import AdminJSSequelize from "@adminjs/sequelize";
+
 import { sequelize } from "../database";
 import { adminJsResource } from "./resources";
 import { locale } from "./locale";
@@ -11,6 +12,9 @@ export const adminJs = new AdminJS({
   databases: [sequelize],
   rootPath: "/admin",
   locale: locale,
+  dashboard: {
+    component: AdminJS.bundle("./components/Dashboard"),
+  },
   resources: adminJsResource,
   branding: {
     companyName: "Plant Shop",
