@@ -1,4 +1,5 @@
 import { Model, DataTypes, Optional } from "sequelize";
+import bcrypt from "bcrypt";
 
 import { sequelize } from "../database";
 
@@ -45,6 +46,18 @@ export const Consumer = sequelize.define<ConsumerInstance, Consumer>(
     },
     imgUrl: {
       type: DataTypes.STRING,
+    },
+  },
+  {
+    hooks: {
+      beforeSave: async (consumer) => {
+        if (consumer.isNewRecord || consumer.changed("password")) {
+          consumer.password = await bcrypt.hash(
+            consumer.password.toString(),
+            10
+          );
+        }
+      },
     },
   }
 );
