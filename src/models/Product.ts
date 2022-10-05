@@ -8,7 +8,7 @@ export interface Product {
   price: number;
   priceCard: string;
   categoryId: number;
-  imageUrl: string;
+  uploadImg: string;
 }
 
 export interface ProductCreateAttributes extends Optional<Product, "id"> {}
@@ -45,7 +45,7 @@ export const Product = sequelize.define<ProductInstance, Product>("Product", {
     onUpdate: "CASCADE",
     onDelete: "RESTRICT",
   },
-  imageUrl: {
+  uploadImg: {
     type: DataTypes.STRING,
   },
 });

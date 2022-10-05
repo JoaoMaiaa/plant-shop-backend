@@ -10,7 +10,7 @@ export const productResourceOptions: ResourceOptions = {
     "categoryId",
     "price",
     "priceCard",
-    "uploadImage",
+    "uploadImg",
   ],
   filterProperties: ["name", "price", "createdAt", "updatedAt"],
   listProperties: [
@@ -29,8 +29,8 @@ export const productResourceOptions: ResourceOptions = {
     "categoryId",
     "price",
     "priceCard",
-    "imageUrl",
-    "creatdAt",
+    "uploadImg",
+    "createdAt",
     "updatedAt",
   ],
 };

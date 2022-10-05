@@ -5,6 +5,7 @@ import AdminJSSequelize from "@adminjs/sequelize";
 import { sequelize } from "../database";
 import { adminJsResource } from "./resources";
 import { locale } from "./locale";
+import { Consumer, Product, Category } from "../models";
 
 AdminJS.registerAdapter(AdminJSSequelize);
 
@@ -14,6 +15,17 @@ export const adminJs = new AdminJS({
   locale: locale,
   dashboard: {
     component: AdminJS.bundle("./components/Dashboard"),
+    handler: async (req, res, ctx) => {
+      const consumer = await Consumer.count();
+      const product = await Product.count();
+      const category = await Category.count();
+
+      res.json({
+        Consumidores: consumer,
+        Produtos: product,
+        Categorias: category,
+      });
+    },
   },
   resources: adminJsResource,
   branding: {
