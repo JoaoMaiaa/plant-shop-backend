@@ -19,7 +19,7 @@ export const productResourceOptions: ResourceOptions = {
     "categoryId",
     "price",
     "priceCard",
-    "creatdAt",
+    "createdAt",
     "updatedAt",
   ],
   showProperties: [

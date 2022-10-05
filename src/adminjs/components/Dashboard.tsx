@@ -3,7 +3,7 @@ import { H1 } from "@adminjs/design-system";
 import { ApiClient } from "adminjs";
 
 export default function Dashboard() {
-  const [data, setData] = useState();
+  const [data, setData] = useState<{ [key: string]: number }>();
   const api = new ApiClient();
 
   useEffect(() => {
@@ -12,7 +12,8 @@ export default function Dashboard() {
 
   async function fetchDashboardData() {
     const res = await api.getDashboard();
-    console.log(res);
+    setData(res.data);
+    console.log(data);
   }
 
   return (
