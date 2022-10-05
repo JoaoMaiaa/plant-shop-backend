@@ -43,10 +43,10 @@ export const productResourceFeatures: FeatureType[] = [
       },
     },
     properties: {
-      key: "imageUrl",
-      file: "uploadImage",
+      key: "uploadFile",
+      file: "uploadImg",
     },
     uploadPath: (record, filename) =>
-      `images/product${record.get("id")}/${filename}`,
+      `images/product-${record.get("id")}/${filename}`,
   }),
 ];
