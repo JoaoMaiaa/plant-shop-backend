@@ -51,7 +51,7 @@ export const locale: Locale = {
       lastName: "Sobrenome",
       price: "Preço",
       priceCard: "Preço no card",
-      uploadImage: "Enviar uma imagem",
+      uploadImg: "Enviar uma imagem",
       imgUrl: "URL da imagem",
     },
     messages: {
