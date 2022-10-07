@@ -10,7 +10,7 @@ export const productResourceOptions: ResourceOptions = {
     "categoryId",
     "price",
     "priceCard",
-    "uploadImg",
+    "uploadFile",
   ],
   filterProperties: ["name", "price", "createdAt", "updatedAt"],
   listProperties: [
@@ -43,8 +43,8 @@ export const productResourceFeatures: FeatureType[] = [
       },
     },
     properties: {
-      key: "uploadFile",
-      file: "uploadImg",
+      file: "uploadFile",
+      key: "uploadImg",
     },
     uploadPath: (record, filename) =>
       `images/product-${record.get("id")}/${filename}`,
