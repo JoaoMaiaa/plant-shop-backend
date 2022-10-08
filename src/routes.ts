@@ -1,9 +1,10 @@
 import express from "express";
 
-import { usersController } from "./controllers/usersController";
+import { consumerController } from "./controllers/consumerController";
 
 const router = express.Router();
 
-router.get("/users", usersController.index);
+router.post("/consumer", consumerController.show);
+router.post("/consumer", consumerController.create);
 
 export { router };
