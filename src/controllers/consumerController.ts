@@ -36,7 +36,50 @@ export const consumerController = {
   },
 
   update: async (req: Request, res: Response) => {
-    return;
+    const { name, lastName, email } = req.body;
+
+    try {
+      const consumer = await consumerService.show(email);
+      if (!consumer) {
+        return res.status(400).json({ message: "Usuário não encontrado" });
+      }
+      const consumerUpdate = await consumerService.update(
+        name,
+        lastName,
+        email
+      );
+
+      return res.status(200).json({
+        message: "Usuário editado com sucesso",
+        consumerUpdate,
+      });
+    } catch (err) {
+      if (err instanceof Error) {
+        return res.json({ err: err.message });
+      }
+    }
+  },
+
+  updatePassword: async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+    const { id } = req.params;
+
+    try {
+      const consumerUpdate = await consumerService.updatePassword(
+        id,
+        email,
+        password
+      );
+
+      return res.status(200).json({
+        message: "Usuário editado com sucesso",
+        consumerUpdate,
+      });
+    } catch (err) {
+      if (err instanceof Error) {
+        return res.json({ err: err.message });
+      }
+    }
   },
 
   delete: async (req: Request, res: Response) => {
