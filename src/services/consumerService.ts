@@ -61,4 +61,10 @@ export const consumerService = {
     );
     return consumerUpdatedPassword;
   },
+
+  delete: async (id: string | number) => {
+    const consumer = await Consumer.destroy({ where: { id } });
+
+    return consumer;
+  },
 };

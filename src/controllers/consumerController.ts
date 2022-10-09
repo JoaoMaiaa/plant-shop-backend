@@ -101,6 +101,16 @@ export const consumerController = {
   },
 
   delete: async (req: Request, res: Response) => {
-    return;
+    const { id } = req.params;
+    try {
+      const consumer = await consumerService.delete(id);
+      if (consumer) {
+        res.status(200).json({ message: "Usuário excluído com sucesso" });
+      }
+    } catch (err) {
+      if (err instanceof Error) {
+        return res.json({ err: err.message });
+      }
+    }
   },
 };
