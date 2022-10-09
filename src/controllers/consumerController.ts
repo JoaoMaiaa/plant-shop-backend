@@ -15,6 +15,24 @@ export const consumerController = {
     }
   },
 
+  login: async (req: Request, res: Response) => {
+    const { password, email } = req.body;
+    try {
+      const consumer = await consumerService.login(email, password);
+      if (!consumer) {
+        return res
+          .status(400)
+          .json({ message: "Erro: Senha ou email inválido" });
+      } else {
+        return res.status(200).json(consumer);
+      }
+    } catch (err) {
+      if (err instanceof Error) {
+        res.status(400).json({ err: err.message });
+      }
+    }
+  },
+
   create: async (req: Request, res: Response) => {
     const { name, lastName, email, password } = req.body;
 

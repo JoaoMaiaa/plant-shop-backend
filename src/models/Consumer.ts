@@ -61,3 +61,10 @@ export const Consumer = sequelize.define<ConsumerInstance, Consumer>(
     },
   }
 );
+
+Consumer.prototype.checkPassword = function (
+  password: string,
+  callbackfn: (err: Error | undefined, isSame: boolean) => void
+) {
+  /*bcrypt*/
+};
