@@ -12,12 +12,16 @@ export interface Consumer {
   imgUrl: string;
 }
 
+type CheckPasswordCallback = (err: Error | undefined, isSame: boolean) => void;
+
 export interface ConsumerAttributes
   extends Optional<Consumer, "id" | "imgUrl"> {}
 
 export interface ConsumerInstance
   extends Model<Consumer, ConsumerAttributes>,
-    Consumer {}
+    Consumer {
+  checkPassword: (password: string, callbackfn: CheckPasswordCallback) => void;
+}
 
 export const Consumer = sequelize.define<ConsumerInstance, Consumer>(
   "Consumer",

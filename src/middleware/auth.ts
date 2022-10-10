@@ -5,7 +5,7 @@ import { ConsumerInstance } from "../models/Consumer";
 import { JwtPayload } from "jsonwebtoken";
 import { consumerService } from "../services/consumerService";
 
-const token = process.env.TOKEN_JWT;
+const secret = process.env.TOKEN_JWT;
 
 export interface AuthenticationRequest extends Request {
   consumer?: ConsumerInstance | null;
@@ -24,7 +24,9 @@ export const ensureAuth = (
       .json({ message: "Não autorizado: Nenhum token encontrado" });
   }
 
-  jwt.verify(authorizationHeader, `${token}`, async (err, decoded) => {
+  const token = authorizationHeader.replace(/Bearer /, "");
+
+  jwt.verify(token, `${secret}`, async (err, decoded) => {
     if (err || typeof decoded === undefined) {
       return res
         .status(401)

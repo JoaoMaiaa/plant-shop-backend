@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { AuthenticationRequest } from "../middleware/auth";
 
 import { consumerService } from "../services/consumerService";
 
@@ -53,15 +54,17 @@ export const consumerController = {
     }
   },
 
-  update: async (req: Request, res: Response) => {
+  update: async (req: AuthenticationRequest, res: Response) => {
+    const consumer = req.consumer!;
     const { name, lastName, email } = req.body;
 
     try {
-      const consumer = await consumerService.show(email);
       if (!consumer) {
-        return res.status(400).json({ message: "Usuário não encontrado" });
+        return res.status(400).json({ message: "Não autorizado" });
       }
+
       const consumerUpdate = await consumerService.update(
+        consumer.id,
         name,
         lastName,
         email
@@ -78,20 +81,33 @@ export const consumerController = {
     }
   },
 
-  updatePassword: async (req: Request, res: Response) => {
-    const { email, password } = req.body;
-    const { id } = req.params;
+  updatePassword: async (req: AuthenticationRequest, res: Response) => {
+    const consumer = req.consumer;
+    const { currentPassword, newPassword } = req.body;
+
+    if (!consumer) {
+      return res.status(401).json({ message: "Não autorizado!" });
+    }
 
     try {
-      const consumerUpdate = await consumerService.updatePassword(
-        id,
-        email,
-        password
-      );
+      consumer.checkPassword(currentPassword, async (err, isSame) => {
+        if (err) {
+          return res.status(400).json({ message: err.message });
+        }
 
-      return res.status(200).json({
-        message: "Usuário editado com sucesso",
-        consumerUpdate,
+        if (!isSame) {
+          return res.status(400).json({ message: "Senha incorreta" });
+        }
+
+        const consumerUpdate = await consumerService.updatePassword(
+          consumer.id,
+          newPassword
+        );
+
+        return res.status(200).json({
+          message: "Usuário editado com sucesso",
+          consumerUpdate,
+        });
       });
     } catch (err) {
       if (err instanceof Error) {

@@ -41,20 +41,21 @@ export const consumerService = {
     }
   },
 
-  update: async (name: string, lastName: string, email: string) => {
+  update: async (
+    id: string | number,
+    name: string,
+    lastName: string,
+    email: string
+  ) => {
     const consumerUpdated = await Consumer.update(
       { name, lastName, email },
-      { where: { email }, returning: true }
+      { where: { id }, returning: true }
     );
 
     return consumerUpdated;
   },
 
-  updatePassword: async (
-    id: string | number,
-    email: string,
-    password: string
-  ) => {
+  updatePassword: async (id: string | number, password: string) => {
     const consumerUpdatedPassword = await Consumer.update(
       { password },
       { where: { id }, individualHooks: true, returning: true }
