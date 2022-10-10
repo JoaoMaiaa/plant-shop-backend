@@ -66,5 +66,11 @@ Consumer.prototype.checkPassword = function (
   password: string,
   callbackfn: (err: Error | undefined, isSame: boolean) => void
 ) {
-  /*bcrypt*/
+  bcrypt.compare(password, this.password, (err, isSame) => {
+    if (err) {
+      callbackfn(err, false);
+    } else {
+      callbackfn(err, isSame);
+    }
+  });
 };
