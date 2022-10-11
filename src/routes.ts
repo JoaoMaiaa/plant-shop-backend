@@ -1,8 +1,11 @@
 import express from "express";
+import multer from "multer";
 
 import { consumerController } from "./controllers/consumerController";
-
 import { ensureAuth } from "./middleware/auth";
+import { storage } from "../config/storage";
+
+const upload = multer({ storage: storage });
 
 const router = express.Router();
 
@@ -16,5 +19,11 @@ router.put(
   consumerController.updatePassword
 );
 router.delete("/consumer/delete", ensureAuth, consumerController.delete);
+router.post(
+  "/consumer/upload",
+  upload.single("file"),
+  ensureAuth,
+  consumerController.upload
+);
 
 export { router };

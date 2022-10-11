@@ -6,9 +6,15 @@ import { consumerService } from "../services/consumerService";
 export const consumerController = {
   upload: async (req: AuthenticationRequest, res: Response) => {
     const { id } = req.consumer!;
+    const path = req.file?.path;
+
     try {
-      const path = req.path;
-      // consumerService.upload(id);
+      const upload = await consumerService.upload(id, path);
+      if (upload) {
+        res.json({ message: "Upload feito com sucesso" });
+      } else {
+        res.json({ message: "Erro: Não foi possível fazer o upload" });
+      }
     } catch (err) {
       if (err instanceof Error) {
         res.status(400).json({ err: err.message });

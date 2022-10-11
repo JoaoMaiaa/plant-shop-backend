@@ -22,7 +22,7 @@ export const consumerService = {
     return consumer;
   },
 
-  upload: async (id: string | number, path: string) => {
+  upload: async (id: string | number, path: string | undefined) => {
     //  const consumer =  await Consumer.findOne({where:{id}})
     await Consumer.update({ imgUrl: path }, { where: { id } });
     return true;
