@@ -12,6 +12,8 @@ app.use(express.json());
 
 app.use(adminJs.options.rootPath, adminJsRouter);
 
+app.use(express.static("public"));
+
 app.use(router);
 
 app.listen(PORT, () => {

@@ -4,6 +4,16 @@ import { AuthenticationRequest } from "../middleware/auth";
 import { consumerService } from "../services/consumerService";
 
 export const consumerController = {
+  upload: async (req: Request, res: Response) => {
+    try {
+      const path = req.path;
+    } catch (err) {
+      if (err instanceof Error) {
+        res.status(400).json({ err: err.message });
+      }
+    }
+  },
+
   show: async (req: Request, res: Response) => {
     const { email } = req.body;
     try {
