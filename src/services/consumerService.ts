@@ -22,6 +22,12 @@ export const consumerService = {
     return consumer;
   },
 
+  upload: async (id: string | number, path: string) => {
+    //  const consumer =  await Consumer.findOne({where:{id}})
+    await Consumer.update({ imgUrl: path }, { where: { id } });
+    return true;
+  },
+
   login: async (email: string, password: string) => {
     const consumer = await Consumer.findOne({ where: { email } });
 

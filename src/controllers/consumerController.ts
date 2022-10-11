@@ -1,12 +1,14 @@
 import { Request, Response } from "express";
-import { AuthenticationRequest } from "../middleware/auth";
 
+import { AuthenticationRequest } from "../middleware/auth";
 import { consumerService } from "../services/consumerService";
 
 export const consumerController = {
-  upload: async (req: Request, res: Response) => {
+  upload: async (req: AuthenticationRequest, res: Response) => {
+    const { id } = req.consumer!;
     try {
       const path = req.path;
+      // consumerService.upload(id);
     } catch (err) {
       if (err instanceof Error) {
         res.status(400).json({ err: err.message });
