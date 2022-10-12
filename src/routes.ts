@@ -1,10 +1,12 @@
 import express from "express";
 import multer from "multer";
 
-import { consumerController } from "./controllers/consumerController";
-import { productController } from "./controllers/productController";
 import { ensureAuth } from "./middleware/auth";
 import { storage } from "../config/storage";
+
+import { consumerController } from "./controllers/consumerController";
+import { productController } from "./controllers/productController";
+import { categoryController } from "./controllers/categoryController";
 
 const upload = multer({ storage: storage });
 
@@ -32,5 +34,9 @@ router.post(
 // products
 
 router.get("/products", productController.index);
+
+// category
+
+router.get("/category", categoryController.findCategoryByName);
 
 export { router };

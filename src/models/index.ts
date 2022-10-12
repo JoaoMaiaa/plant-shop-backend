@@ -4,7 +4,7 @@ import { Product } from "./Product";
 import { Category } from "./Category";
 import { Star } from "./Star";
 
-Category.hasMany(Product);
+Category.hasMany(Product, { as: "products" });
 Product.belongsTo(Category);
 
 Comment.belongsTo(Consumer);
