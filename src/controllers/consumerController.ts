@@ -4,6 +4,18 @@ import { AuthenticationRequest } from "../middleware/auth";
 import { consumerService } from "../services/consumerService";
 
 export const consumerController = {
+  getPath: async (req: AuthenticationRequest, res: Response) => {
+    const { id } = req.consumer!;
+    try {
+      const image = await consumerService.getPath(id);
+      res.json({ image });
+    } catch (err) {
+      if (err instanceof Error) {
+        res.status(400).json({ err: err.message });
+      }
+    }
+  },
+
   upload: async (req: AuthenticationRequest, res: Response) => {
     const { id } = req.consumer!;
     const path = req.file?.path;

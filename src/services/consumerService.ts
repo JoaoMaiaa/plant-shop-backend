@@ -28,6 +28,11 @@ export const consumerService = {
     return true;
   },
 
+  getPath: async (id: string | number) => {
+    const consumer = await Consumer.findOne({ where: { id } });
+    return consumer?.imgUrl;
+  },
+
   login: async (email: string, password: string) => {
     const consumer = await Consumer.findOne({ where: { email } });
 
