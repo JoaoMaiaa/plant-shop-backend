@@ -2,12 +2,15 @@ import express from "express";
 import multer from "multer";
 
 import { consumerController } from "./controllers/consumerController";
+import { productController } from "./controllers/productController";
 import { ensureAuth } from "./middleware/auth";
 import { storage } from "../config/storage";
 
 const upload = multer({ storage: storage });
 
 const router = express.Router();
+
+// consumer
 
 router.get("/consumer", consumerController.show);
 router.post("/consumer/login", consumerController.login);
@@ -25,5 +28,9 @@ router.post(
   ensureAuth,
   consumerController.upload
 );
+
+// products
+
+router.get("/products", productController.index);
 
 export { router };
