@@ -17,6 +17,7 @@ const router = express.Router();
 router.get("/consumer", consumerController.show);
 router.post("/consumer/login", consumerController.login);
 router.post("/consumer/create", consumerController.create);
+router.post("/consumer/payment", ensureAuth, consumerController.payment);
 router.put("/consumer/current", ensureAuth, consumerController.update);
 router.put(
   "/consumer/current/password",

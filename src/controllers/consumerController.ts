@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 import { AuthenticationRequest } from "../middleware/auth";
 import { consumerService } from "../services/consumerService";
+import { paymentService, ProductTypes } from "../services/paymentService";
 
 export const consumerController = {
   getPath: async (req: AuthenticationRequest, res: Response) => {
@@ -147,9 +148,9 @@ export const consumerController = {
   },
 
   payment: async (req: AuthenticationRequest, res: Response) => {
-    const { productData } = req.body;
+    const productData = req.body;
     try {
-      const product = await paymentService.payment();
+      const product = await paymentService.payment(productData);
       res.json(product);
     } catch (err) {
       if (err instanceof Error) {

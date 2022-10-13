@@ -13,4 +13,16 @@ export const productController = {
       }
     }
   },
+
+  getProductById: async (req: Request, res: Response) => {
+    const { id } = req.body;
+    try {
+      const products = await productService.getProductById(id);
+      res.json(products);
+    } catch (err) {
+      if (err instanceof Error) {
+        res.status(400).json(err.message);
+      }
+    }
+  },
 };

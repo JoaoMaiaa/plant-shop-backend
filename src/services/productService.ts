@@ -5,4 +5,9 @@ export const productService = {
     const products = await Product.findAll();
     return products;
   },
+
+  getProductById: async (id: number) => {
+    const product = await Product.findOne({ where: { id } });
+    return product;
+  },
 };
