@@ -21,6 +21,7 @@
     "@adminjs/express": "^5.0.0",
     "@adminjs/sequelize": "^3.0.0",
     "@adminjs/upload": "^3.0.0",
+    "@stripe/stripe-js": "^1.41.0",
     "adminjs": "^6.2.4",
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.2",
@@ -29,7 +30,8 @@
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.5-lts.1",
     "pg": "^8.8.0",
-    "sequelize": "^6.23.1"
+    "sequelize": "^6.23.1",
+    "use-shopping-cart": "^3.1.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

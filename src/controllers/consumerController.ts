@@ -146,6 +146,18 @@ export const consumerController = {
     }
   },
 
+  payment: async (req: AuthenticationRequest, res: Response) => {
+    const { productData } = req.body;
+    try {
+      const product = await paymentService.payment();
+      res.json(product);
+    } catch (err) {
+      if (err instanceof Error) {
+        res.status(400).json(err.message);
+      }
+    }
+  },
+
   delete: async (req: AuthenticationRequest, res: Response) => {
     const { id } = req.consumer!;
     try {
