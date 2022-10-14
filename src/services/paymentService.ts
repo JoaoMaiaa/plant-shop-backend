@@ -3,11 +3,14 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+//@ts-ignore
+import { validateCartItems } from "use-shopping-cart/utilities";
+
 export interface ProductTypes {
   productData: {
     id: number;
     name: string;
-    img: string;
+    img: string[];
     price: number;
     priceCard: string;
     price_data: {};
@@ -30,7 +33,25 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 
 export const paymentService = {
   payment: async ({ productData }: ProductTypes) => {
+    const product = await stripe.products.create({
+      name: productData.name,
+      description: productData.description,
+      images: productData.img,
+    });
+    const price = await stripe.prices.create({
+      product: product.id,
+      unit_amount: productData.price,
+      currency: productData.currency,
+    });
+
     try {
+      const session = await stripe.checkout.sessions.create({
+        success_url: "http://localhost:3000",
+        cancel_url: "http://localhost:3000",
+        line_items: [{ price: `${price.id}`, quantity: productData.quantity }],
+        mode: "payment",
+      });
+      return session;
     } catch (err) {
       if (err instanceof Error) {
         return err.message;
