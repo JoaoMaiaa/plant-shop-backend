@@ -1,5 +1,4 @@
-{
-  // "type": "commonjs",
+{  
   "name": "plant-shop-backend",
   "version": "1.0.0",
   "description": "backend do ecommerce plant-shop",
