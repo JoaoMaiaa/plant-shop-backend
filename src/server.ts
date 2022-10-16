@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 
 import { sequelize } from "./database";
 import { adminJs, adminJsRouter } from "./adminjs";
@@ -7,6 +8,8 @@ import { router } from "./routes";
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+
+app.use(cors());
 
 app.use(express.json());
 
