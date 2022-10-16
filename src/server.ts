@@ -1,12 +1,8 @@
 import express from "express";
-// const express = require("express");
 
-import {sequelize} from "./database";
-// const sequelize = require("./database");
+import { sequelize } from "./database";
 import { adminJs, adminJsRouter } from "./adminjs";
-// const { adminJs, adminJsRouter } = require("./adminjs");
 import { router } from "./routes";
-// const { router } = require("./routes");
 
 const app = express();
 
