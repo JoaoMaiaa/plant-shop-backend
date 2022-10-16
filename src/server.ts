@@ -2,7 +2,7 @@
 const express = require("express");
 
 // import { sequelize } from "./database";
-const { sequelize } = require("./database");
+const { sequelize } = require("./database/index");
 // import { adminJs, adminJsRouter } from "./adminjs";
 const { adminJs, adminJsRouter } = require("./adminjs");
 // import { router } from "./routes";
