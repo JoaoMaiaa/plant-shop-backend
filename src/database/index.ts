@@ -11,6 +11,12 @@ export const sequelize = new Sequelize({
   port: 5432,
   host: `${process.env.HOST}`,
   database: `${process.env.DATABASE}`,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
   define: {
     underscored: true,
   },
