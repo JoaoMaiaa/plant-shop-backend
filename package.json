@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "start": "node --loader ts-node/esm ./src/server.ts --max_old_space_size=4096",
-    "build": "node --loader ts-node/esm ./src/server.ts --max_old_space_size=4096 build"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
