@@ -11,7 +11,8 @@
     "compile": "tsc",
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "start": "node --optimize_for_size --loader ts-node/esm ./src/server.ts --max_old_space_size=460",
-    "build": "npm run compile"
+    "build": "npm run compile",
+    "heroku": "npm start"
   },
   "repository": {
     "type": "git",
